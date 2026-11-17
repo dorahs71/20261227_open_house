@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+
+# macOS Finder
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Spec / Planning docs
+*.docx
+*.doc
+*.xlsx
+*.pptx
+*.pdf
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local

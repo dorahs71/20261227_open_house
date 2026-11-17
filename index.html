@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Your Talent – Premium & BID Toastmasters Open House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #2563EB; --blue-light: #EFF6FF;
+      --orange: #F97316; --orange-light: #FFF7ED;
+      --purple: #9333EA; --purple-light: #FAF5FF;
+      --green: #10B981; --green-light: #ECFDF5;
+      --text-dark: #1E293B; --text-muted: #64748B;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 20px 16px; position: relative;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #DBEAFE 0%, #FFEDD5 35%, #F3E8FF 70%, #D1FAE5 100%);
+      background-size: 300% 300%; animation: gradientFlow 14s ease infinite;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .blob { position: fixed; border-radius: 50%; filter: blur(70px); z-index: 0; opacity: 0.65; pointer-events: none; }
+    .blob-1 { width: 340px; height: 340px; background: #60A5FA; top: -80px; left: -80px; }
+    .blob-2 { width: 320px; height: 320px; background: #FB923C; top: 15%; right: -90px; }
+    .blob-3 { width: 350px; height: 350px; background: #C084FC; bottom: -90px; left: 10%; }
+    .blob-4 { width: 300px; height: 300px; background: #34D399; bottom: 5%; right: 5%; }
+    .container { width: 100%; max-width: 580px; position: relative; z-index: 1; }
+    .badge-host {
+      display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 999px; font-size: 13px;
+      font-weight: 700; color: #334155; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); margin-bottom: 16px;
+    }
+    .top-bar { display: flex; justify-content: center; width: 100%; }
+    .card {
+      background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(16px); border-radius: 28px;
+      padding: 36px 28px; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 480px) { .card { padding: 28px 20px; border-radius: 24px; } }
+    .view { display: none; animation: fadeIn 0.35s ease; }
+    .view.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-title { font-size: clamp(26px, 5vw, 34px); font-weight: 900; line-height: 1.25; text-align: center; margin-bottom: 10px; color: #0F172A; }
+    .gradient-text { background: linear-gradient(90deg, #2563EB, #9333EA, #F97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+    .hero-subtitle { text-align: center; font-size: 17px; font-weight: 700; color: #334155; margin-bottom: 22px; letter-spacing: 0.5px; }
+    .hook-box { background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%); border-radius: 18px; padding: 20px; margin-bottom: 26px; border: 1px solid #E2E8F0; text-align: center; }
+    .hook-box p { font-size: 15px; line-height: 1.65; color: #475569; }
+    .hook-box strong { color: #0F172A; font-size: 16px; display: block; margin-bottom: 6px; }
+    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 14px; }
+    .pill { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px; }
+    .pill-blue { background: var(--blue-light); color: var(--blue); }
+    .pill-orange { background: var(--orange-light); color: var(--orange); }
+    .pill-purple { background: var(--purple-light); color: var(--purple); }
+    .pill-green { background: var(--green-light); color: var(--green); }
+    .btn {
+      width: 100%; padding: 16px 24px; border-radius: 16px; font-size: 17px; font-weight: 800;
+      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      gap: 10px; text-decoration: none; transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%); color: #FFFFFF; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.32); margin-bottom: 14px; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4); }
+    .btn-accupass { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); color: #FFFFFF; box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3); }
+    .btn-accupass:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(249, 115, 22, 0.4); }
+    .btn-secondary { background: #F1F5F9; color: #475569; font-size: 15px; padding: 13px 20px; }
+    .btn-secondary:hover { background: #E2E8F0; }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+    .footer-host { text-align: center; font-size: 12px; color: #64748B; margin-top: 22px; font-weight: 600; }
+    .section-title { font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 8px; color: #0F172A; }
+    .section-desc { font-size: 14px; color: var(--text-muted); text-align: center; margin-bottom: 24px; line-height: 1.5; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: #334155; }
+    .form-input { width: 100%; padding: 14px 16px; border-radius: 14px; border: 2px solid #E2E8F0; font-size: 16px; font-family: inherit; transition: border-color 0.2s; background: #F8FAFC; }
+    .form-input:focus { outline: none; border-color: #2563EB; background: #FFFFFF; }
+    .error-msg { color: #EF4444; font-size: 13px; font-weight: 600; margin-top: 6px; display: none; }
+    .progress-wrap { margin-bottom: 20px; }
+    .progress-header { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 800; color: #475569; margin-bottom: 8px; }
+    .progress-bar-bg { width: 100%; height: 8px; background: #E2E8F0; border-radius: 999px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; width: 16.66%; background: linear-gradient(90deg, #2563EB, #9333EA, #F97316); border-radius: 999px; transition: width 0.3s ease; }
+    .question-zh { font-size: 20px; font-weight: 900; color: #0F172A; line-height: 1.4; margin-bottom: 4px; }
+    .question-en { font-size: 14px; font-weight: 600; color: #64748B; margin-bottom: 14px; }
+    .instruction-tip { background: #FEF3C7; color: #92400E; font-size: 13px; font-weight: 700; padding: 10px 14px; border-radius: 12px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .reset-link { background: none; border: none; color: #B45309; text-decoration: underline; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .options-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+    .option-card { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 16px; border: 2px solid #E2E8F0; background: #FFFFFF; cursor: pointer; transition: all 0.18s ease; user-select: none; }
+    .option-card:hover { border-color: #94A3B8; background: #F8FAFC; }
+    .option-card.selected { border-color: #2563EB; background: #EFF6FF; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12); }
+    .option-text { flex: 1; }
+    .option-title { font-size: 16px; font-weight: 800; color: #0F172A; margin-bottom: 4px; }
+    .option-desc-zh { font-size: 14px; color: #334155; line-height: 1.4; }
+    .option-desc-en { font-size: 13px; color: #64748B; line-height: 1.4; margin-top: 2px; }
+    .rank-circle { width: 36px; height: 36px; border-radius: 50%; border: 2px dashed #CBD5E1; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 900; color: #94A3B8; flex-shrink: 0; transition: all 0.2s ease; }
+    .option-card.selected .rank-circle { border: none; color: #FFFFFF; transform: scale(1.08); }
+    .rank-1 { background: #2563EB; } .rank-2 { background: #7C3AED; } .rank-3 { background: #F97316; } .rank-4 { background: #64748B; }
+    .nav-btns { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; }
+    .result-badge { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+    .result-card-hero { border-radius: 22px; padding: 26px 20px; text-align: center; margin-bottom: 20px; border: 2px solid transparent; }
+    .archetype-crop-frame {
+      width: 150px; height: 225px; margin: 0 auto 14px auto; border-radius: 18px; overflow: hidden;
+      border: 3px solid #FFFFFF;
+    }
+    .archetype-crop-frame img {
+      width: 400%; height: 100%; object-fit: cover; display: block;
+    }
+    .crop-A { background-color: #DBEAFE; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25); }
+    .crop-A img { margin-left: 0%; }
+    .crop-B { background-color: #FFEDD5; box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25); }
+    .crop-B img { margin-left: -100%; }
+    .crop-C { background-color: #F3E8FF; box-shadow: 0 8px 20px rgba(147, 51, 234, 0.25); }
+    .crop-C img { margin-left: -200%; }
+    .crop-D { background-color: #D1FAE5; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25); }
+    .crop-D img { margin-left: -300%; }
+    .result-name-zh { font-size: 28px; font-weight: 900; margin-bottom: 4px; }
+    .result-name-en { font-size: 15px; font-weight: 700; opacity: 0.85; margin-bottom: 14px; }
+    .ticket-pill { display: inline-flex; align-items: center; gap: 6px; background: #FFFFFF; padding: 8px 16px; border-radius: 999px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+    .secondary-box { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 14px 16px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+    .workshop-cta-box { background: linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 100%); border: 1.5px solid #FDBA74; border-radius: 18px; padding: 20px; margin-bottom: 20px; text-align: center; }
+    .workshop-cta-box h3 { font-size: 17px; font-weight: 900; color: #9A3412; margin-bottom: 8px; }
+    .workshop-cta-box p { font-size: 14px; color: #7C2D12; line-height: 1.6; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div>
+  <div class="container">
+    <div class="top-bar"><div class="badge-host">🌟Premium & BID Toastmasters Open House</div></div>
+    <div class="card">
+      <div id="view-home" class="view active">
+        <h1 class="hero-title">Discover Your Talent<span class="gradient-text">Make Your Life a Masterpiece!</span></h1>
+        <p class="hero-subtitle">找到天賦・找到定位・活出你的志業</p>
+        <div class="hook-box">
+          <strong>✨ 1 分鐘測出你的職場天賦原型</strong>
+          <p>你不是不夠好，只是還沒找到對的位置！<br>立即解鎖你的專屬天賦光譜，<br>報名參加由資深職業教練 <b>Edward Chen, DTM</b> 帶領的深度工作坊</p>
+          <div class="pill-row">
+            <span class="pill pill-blue">🧭 策略領航員</span>
+            <span class="pill pill-orange">🧡 暖心賦能者</span>
+            <span class="pill pill-purple">📖 魅力說書人</span>
+            <span class="pill pill-green">🚀 遠見影響家</span>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="goToView('view-info')">✨ 做心理測驗</button>
+        <a href="https://www.accupass.com/" target="_blank" rel="noopener noreferrer" class="btn btn-accupass">🎉 報名 12/27 工作坊</a>
+        <div class="footer-host">主辦單位：Premium & BID Toastmasters</div>
+      </div>
+
+      <div id="view-info" class="view">
+        <h2 class="section-title">開啟你的天賦探索 ✨</h2>
+        <p class="section-desc">請先填寫你的英文名與信箱，完成 6 題直覺排序即可揭曉你的專屬天賦原型！</p>
+        <div class="form-group">
+          <label for="user-name">英文名字 English Name *</label>
+          <input type="text" id="user-name" class="form-input" placeholder="例如：Dora / Alex" />
+          <div id="err-name" class="error-msg">請輸入你的英文名字</div>
+        </div>
+        <div class="form-group">
+          <label for="user-email">電子信箱 Email *</label>
+          <input type="email" id="user-email" class="form-input" placeholder="example@email.com" />
+          <div id="err-email" class="error-msg">請輸入有效的電子信箱</div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="startQuiz()">開始心理測驗 ➔</button>
+        <button type="button" class="btn btn-secondary" onclick="goToView('view-home')">← 返回首頁</button>
+      </div>
+
+      <div id="view-quiz" class="view">
+        <div class="progress-wrap">
+          <div class="progress-header"><span id="q-counter">Question 1 / 6</span><span id="q-percent">17%</span></div>
+          <div class="progress-bar-bg"><div id="q-progress-fill" class="progress-bar-fill"></div></div>
+        </div>
+        <div id="q-title-zh" class="question-zh"></div>
+        <div id="q-title-en" class="question-en"></div>
+        <div class="instruction-tip">
+          <span>請依「最像你 (1)」到「最不像你 (4)」依序點擊</span>
+          <button type="button" class="reset-link" onclick="resetCurrentQuestion()">重新排序</button>
+        </div>
+        <div id="options-container" class="options-list"></div>
+        <div class="nav-btns">
+          <button type="button" id="btn-prev" class="btn btn-secondary" onclick="prevQuestion()">上一題</button>
+          <button type="button" id="btn-next" class="btn btn-primary" style="margin-bottom:0;" onclick="nextQuestion()" disabled>下一題</button>
+        </div>
+      </div>
+
+      <div id="view-result" class="view">
+        <div style="text-align:center;"><span class="result-badge" id="res-greeting">Hi! 你的專屬天賦原型是</span></div>
+        <div id="res-hero-box" class="result-card-hero">
+          <div id="res-visual-container"></div>
+          <div id="res-name-zh" class="result-name-zh"></div>
+          <div id="res-name-en" class="result-name-en"></div>
+          <div id="res-ticket" class="ticket-pill"></div>
+        </div>
+        <div class="secondary-box">
+          <span style="color:#64748B; font-weight:700;">✨ 隱藏次要潛力</span>
+          <strong id="res-secondary" style="color:#0F172A;"></strong>
+        </div>
+        <div class="workshop-cta-box">
+          <h3>想解鎖更多潛能、精準定位職場方向嗎？</h3>
+          <br>每個天賦都有專屬的舞台與發揮策略！<br>歡迎報名 <b>Premium & BID Toastmasters 發現天賦工作坊</b>，<br>與資深職業教練 Edward Chen, DTM 一起找到最適合你的位置！</p>
+          <a href="https://www.accupass.com/" target="_blank" rel="noopener noreferrer" class="btn btn-accupass">🎉 報名 12/27 工作坊</a>
+        </div>
+        <button type="button" class="btn btn-secondary" onclick="restartQuiz()">🔄 重新測驗</button>
+        <div class="footer-host">主辦單位：Premium & BID Toastmasters</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = "";
+    const ACCUPASS_URL = "https://www.accupass.com/";
+    document.querySelectorAll('.btn-accupass').forEach(el => { el.href = ACCUPASS_URL; });
+
+    const QUESTIONS = [
+      { zh: "Q1. 週一早上開始工作，你最習慣先做哪件事？", en: "Starting your workday, what do you prioritize?", options: [
+        { key: "A", title: "(A) 排定計畫 Planning", zh: "列出待辦清單，拆解工作步驟", en: "Listing tasks and steps" },
+        { key: "B", title: "(B) 關心夥伴 Connecting", zh: "跟同事打招呼，確認大家狀態", en: "Checking in with teammates" },
+        { key: "C", title: "(C) 分享趣事 Energizing", zh: "聊個有趣故事或笑話炒熱氣氛", en: "Sharing a fun story or joke" },
+        { key: "D", title: "(D) 推進提案 Pitching", zh: "構思新點子並準備說服關鍵人物", en: "Preparing ideas to win support" }
+      ]},
+      { zh: "Q2. 團隊討論卡關時，你最常扮演什麼角色？", en: "When a team gets stuck, what role do you play?", options: [
+        { key: "A", title: "(A) 整理資訊 Organizing", zh: "梳理現況，指出最合理的方向", en: "Clarifying facts and direction" },
+        { key: "B", title: "(B) 傾聽鼓勵 Supporting", zh: "安撫大家情緒，維持團隊士氣", en: "Listening and lifting morale" },
+        { key: "C", title: "(C) 幽默破冰 Ice-breaking", zh: "用生動比喻或幽默感化解僵局", en: "Using humor or vivid stories" },
+        { key: "D", title: "(D) 提出願景 Negotiating", zh: "拋出大膽解方，協調各方達共識", en: "Proposing bold solutions" }
+      ]},
+      { zh: "Q3. 哪一種工作小成就，最能讓你開心一整天？", en: "Which small win makes your day?", options: [
+        { key: "A", title: "(A) 導回正軌 Organizing", zh: "把混亂的專案整理得井井有條", en: "Bringing order to a messy project" },
+        { key: "B", title: "(B) 助人成長 Inspiring", zh: "你的鼓勵幫同事找到了前進動力", en: "Inspiring others to move forward" },
+        { key: "C", title: "(C) 魅力全開 Captivating", zh: "簡報或分享時逗笑全場、吸引目光", en: "Captivating the room with a great story" },
+        { key: "D", title: "(D) 成功說服 Persuading", zh: "讓難搞的客戶或主管點頭同意提案", en: "Winning over tough stakeholders" }
+      ]},
+      { zh: "Q4. 週五晚上，你最喜歡用哪種方式幫自己充電？", en: "On Friday night, how do you recharge?", options: [
+        { key: "A", title: "(A) 復盤規劃 Planning", zh: "整理本週收穫，思考下一步目標", en: "Reflecting & planning my next goals" },
+        { key: "B", title: "(B) 知心深聊 Connecting", zh: "跟一兩位好友吃飯聊天、互相打氣", en: "Deep chatting with close friends" },
+        { key: "C", title: "(C) 享受娛樂 Enjoying", zh: "看脫口秀、電影或表演放鬆心情", en: "Enjoying shows, comedy, or movies" },
+        { key: "D", title: "(D) 跨界交流 Networking", zh: "參加講座或沙龍吸收新趨勢觀點", en: "Networking and learning new trends" }
+      ]},
+      { zh: "Q5. 如果可以擁有一種「職場與舞台超能力」，你最想要哪一個？", en: "Which superpower do you want most?", options: [
+        { key: "A", title: "(A) 全局羅盤 Master Compass", zh: "在變局中冷靜決策、帶領團隊", en: "Smart decisions in chaos" },
+        { key: "B", title: "(B) 暖心磁場 Warm Magnet", zh: "瞬間讀懂人心，建立深度信任", en: "Building deep trust easily" },
+        { key: "C", title: "(C) 魅力聚光燈 Charisma Spotlight", zh: "一開口就自帶幽默與舞台感染力", en: "Natural stage charm" },
+        { key: "D", title: "(D) 影響力號角 Influence Horn", zh: "用願景與說服力讓大家跟隨你", en: "Persuading with vision" }
+      ]},
+      { zh: "Q6. 你希望自己的人生傑作（Masterpiece），帶給別人什麼感覺？", en: "What vibe should your life masterpiece give others?", options: [
+        { key: "A", title: "(A) 穩健指引 Guiding Lighthouse", zh: "像一座在風浪中指引方向的燈塔", en: "Steady and clear" },
+        { key: "B", title: "(B) 溫暖希望 Warm Sunrise", zh: "像一場讓人感到被支持的陽光日出", en: "Uplifting and caring" },
+        { key: "C", title: "(C) 鮮活驚喜 Vibrant Artwork", zh: "像一幅色彩奔放、充滿創意的藝術畫", en: "Joyful and bold" },
+        { key: "D", title: "(D) 宏大遠見 Grand Blueprint", zh: "像一幅描繪未來藍圖的壯闊建築", en: "Inspiring the future" }
+      ]}
+    ];
+
+    const ARCHETYPES = {
+      A: { icon: "🧭", zh: "策略領航員", en: "The Strategic Navigator", ticket: "🔵 藍色入場券", bg: "#EFF6FF", border: "#93C5FD", color: "#1D4ED8", cropClass: "crop-A" },
+      B: { icon: "🧡", zh: "暖心賦能者", en: "The Empathetic Mentor", ticket: "🟠 暖橘色入場券", bg: "#FFF7ED", border: "#FDBA74", color: "#C2410C", cropClass: "crop-B" },
+      C: { icon: "📖", zh: "魅力說書人", en: "The Charismatic Storyteller", ticket: "🟣 亮紫色入場券", bg: "#FAF5FF", border: "#D8B4FE", color: "#7E22CE", cropClass: "crop-C" },
+      D: { icon: "🚀", zh: "遠見影響家", en: "The Visionary Influencer", ticket: "🟢 翠綠色入場券", bg: "#ECFDF5", border: "#6EE7B7", color: "#047857", cropClass: "crop-D" }
+    };
+
+    let userData = { name: "", email: "" };
+    let currentQIndex = 0;
+    let userAnswers = [[], [], [], [], [], []];
+
+    function goToView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startQuiz() {
+      const nameInput = document.getElementById('user-name').value.trim();
+      const emailInput = document.getElementById('user-email').value.trim();
+      const errName = document.getElementById('err-name');
+      const errEmail = document.getElementById('err-email');
+      let valid = true;
+      if (!nameInput) { errName.style.display = 'block'; valid = false; } else { errName.style.display = 'none'; }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput || !emailRegex.test(emailInput)) { errEmail.style.display = 'block'; valid = false; } else { errEmail.style.display = 'none'; }
+      if (!valid) return;
+      userData.name = nameInput; userData.email = emailInput; currentQIndex = 0;
+      renderQuestion(); goToView('view-quiz');
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[currentQIndex];
+      const currentRanking = userAnswers[currentQIndex];
+      document.getElementById('q-counter').textContent = `Question ${currentQIndex + 1} / 6`;
+      const pct = Math.round(((currentQIndex + 1) / 6) * 100);
+      document.getElementById('q-percent').textContent = `${pct}%`;
+      document.getElementById('q-progress-fill').style.width = `${pct}%`;
+      document.getElementById('q-title-zh').textContent = q.zh;
+      document.getElementById('q-title-en').textContent = q.en;
+      const container = document.getElementById('options-container');
+      container.innerHTML = '';
+      q.options.forEach(opt => {
+        const rankIdx = currentRanking.indexOf(opt.key);
+        const rankNum = rankIdx !== -1 ? rankIdx + 1 : null;
+        const card = document.createElement('div');
+        card.className = 'option-card' + (rankNum ? ' selected' : '');
+        card.onclick = () => toggleOptionRank(opt.key);
+        card.innerHTML = `<div class="option-text"><div class="option-title">${opt.title}</div><div class="option-desc-zh">${opt.zh}</div><div class="option-desc-en">${opt.en}</div></div><div class="rank-circle ${rankNum ? 'rank-' + rankNum : ''}">${rankNum ? rankNum : ''}</div>`;
+        container.appendChild(card);
+      });
+      document.getElementById('btn-prev').style.visibility = currentQIndex === 0 ? 'hidden' : 'visible';
+      const nextBtn = document.getElementById('btn-next');
+      nextBtn.disabled = currentRanking.length < 4;
+      nextBtn.textContent = currentQIndex === 5 ? '看測驗結果 💡' : '下一題 ➔';
+    }
+
+    function toggleOptionRank(key) {
+      let arr = userAnswers[currentQIndex];
+      const idx = arr.indexOf(key);
+      if (idx !== -1) { arr.splice(idx, 1); } else if (arr.length < 4) { arr.push(key); }
+      renderQuestion();
+    }
+
+    function resetCurrentQuestion() { userAnswers[currentQIndex] = []; renderQuestion(); }
+    function prevQuestion() { if (currentQIndex > 0) { currentQIndex--; renderQuestion(); } }
+    function nextQuestion() {
+      if (userAnswers[currentQIndex].length < 4) return;
+      if (currentQIndex < 5) { currentQIndex++; renderQuestion(); } else { calculateAndShowResult(); }
+    }
+
+    function calculateAndShowResult() {
+      const scores = { A: 0, B: 0, C: 0, D: 0 };
+      const pointsMap = [4, 3, 2, 1];
+      userAnswers.forEach(ranking => { ranking.forEach((key, idx) => { scores[key] += pointsMap[idx]; }); });
+      const q3First = userAnswers[2][0]; const q5First = userAnswers[4][0];
+      const sortedKeys = ['A', 'B', 'C', 'D'].sort((a, b) => {
+        if (scores[b] !== scores[a]) return scores[b] - scores[a];
+        const aTieBonus = (a === q3First ? 1 : 0) + (a === q5First ? 1 : 0);
+        const bTieBonus = (b === q3First ? 1 : 0) + (b === q5First ? 1 : 0);
+        return bTieBonus - aTieBonus;
+      });
+      const primaryKey = sortedKeys[0]; const secondaryKey = sortedKeys[1];
+      const primary = ARCHETYPES[primaryKey]; const secondary = ARCHETYPES[secondaryKey];
+      document.getElementById('res-greeting').textContent = `Hi ${userData.name}！你的主天賦原型是`;
+      const heroBox = document.getElementById('res-hero-box');
+      heroBox.style.background = primary.bg; heroBox.style.borderColor = primary.border; heroBox.style.color = primary.color;
+      document.getElementById('res-visual-container').innerHTML = `<div class="archetype-crop-frame ${primary.cropClass}"><img src="./四大類人格.jpg" alt="${primary.zh} 主視覺" /></div>`;
+      document.getElementById('res-name-zh').textContent = `【${primary.zh}】`;
+      document.getElementById('res-name-en').textContent = primary.en;
+      document.getElementById('res-ticket').textContent = `報到領取：${primary.ticket}`;
+      document.getElementById('res-secondary').textContent = `${secondary.icon} ${secondary.zh}`;
+      goToView('view-result');
+      sendToGoogleSheet({ timestamp: new Date().toISOString(), name: userData.name, email: userData.email, primaryKey: primaryKey, primaryType: primary.zh, secondaryKey: secondaryKey, secondaryType: secondary.zh, scoreA: scores.A, scoreB: scores.B, scoreC: scores.C, scoreD: scores.D });
+    }
+
+    function sendToGoogleSheet(payload) {
+      if (!GOOGLE_SCRIPT_URL) { console.log("尚未設定 GOOGLE_SCRIPT_URL，測驗資料預覽：", payload); return; }
+      fetch(GOOGLE_SCRIPT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).catch(err => console.error("傳送至 Google Sheet 失敗：", err));
+    }
+
+    function restartQuiz() { userAnswers = [[], [], [], [], [], []]; currentQIndex = 0; goToView('view-home'); }
+  </script>
+</body>
+</html>
