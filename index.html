@@ -79,6 +79,11 @@
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4); }
     .btn-accupass { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); color: #FFFFFF; box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3); }
     .btn-accupass:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(249, 115, 22, 0.4); }
+    .workshop-cta-box .btn-accupass { animation: pulseGlow 2s ease-in-out infinite; }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4), 0 0 0 0 rgba(253, 230, 138, 0); }
+      50% { box-shadow: 0 8px 28px rgba(249, 115, 22, 0.7), 0 0 28px 10px rgba(253, 230, 138, 0.6), 0 0 60px 20px rgba(249, 115, 22, 0.25); }
+    }
     .btn-secondary { background: #F1F5F9; color: #475569; font-size: 15px; padding: 13px 20px; }
     .btn-secondary:hover { background: #E2E8F0; }
     .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
@@ -134,6 +139,16 @@
     .workshop-cta-box { background: linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 100%); border: 1.5px solid #FDBA74; border-radius: 18px; padding: 20px; margin-bottom: 20px; text-align: center; }
     .workshop-cta-box h3 { font-size: 17px; font-weight: 900; color: #9A3412; margin-bottom: 8px; }
     .workshop-cta-box p { font-size: 14px; color: #7C2D12; line-height: 1.6; margin-bottom: 16px; }
+    .traits-box { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 18px; padding: 16px 18px 14px; margin-bottom: 18px; }
+    .traits-label { font-size: 11px; font-weight: 800; color: #94A3B8; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .trait-row { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; font-size: 14px; font-weight: 600; color: #334155; border-bottom: 1px solid #F1F5F9; line-height: 1.45; }
+    .trait-row:last-of-type { border-bottom: none; }
+    .traits-peek-wrap { position: relative; overflow: hidden; max-height: 38px; }
+    .traits-peek-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(248,250,252,0.2), #F8FAFC 85%); pointer-events: none; }
+    .traits-lock-cta { text-align: center; margin-top: 10px; font-size: 13px; font-weight: 800; color: #7C3AED; }
+    .screenshot-tip { display: flex; align-items: flex-start; gap: 12px; background: #F0FDF4; border: 1.5px solid #86EFAC; border-radius: 16px; padding: 14px 16px; margin-bottom: 18px; }
+    .screenshot-tip-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+    .screenshot-tip-text { font-size: 13px; font-weight: 700; color: #166534; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -202,6 +217,7 @@
           <div id="res-name-en" class="result-name-en"></div>
           <div id="res-ticket" class="ticket-pill"></div>
         </div>
+        <div id="res-traits" class="traits-box"></div>
         <div class="secondary-box">
           <span style="color:#64748B; font-weight:700;">✨ 隱藏次要潛力</span>
           <strong id="res-secondary" style="color:#0F172A;"></strong>
@@ -210,6 +226,10 @@
           <h3>想解鎖更多潛能、精準定位職場方向嗎？</h3>
           <br>每個天賦都有專屬的舞台與發揮策略！<br>歡迎報名 <b>Premium & BID Toastmasters 發現天賦工作坊</b> <br>與資深職涯教練 Edward Chen, DTM（陳世明） <br> 一起找到最適合你的人生定位！</p>
           <a href="https://www.accupass.com/" target="_blank" rel="noopener noreferrer" class="btn btn-accupass">🎉 報名 12/27 工作坊</a>
+        </div>
+        <div class="screenshot-tip">
+          <div class="screenshot-tip-icon">📸</div>
+          <div class="screenshot-tip-text">截圖保存測驗結果！<br>活動當天出示截圖至報到處，即可領取你的專屬入場券 🎟️</div>
         </div>
         <button type="button" class="btn btn-secondary" onclick="restartQuiz()">🔄 重新測驗</button>
         <div class="footer-host">主辦單位：Premium & BID Toastmasters</div>
@@ -262,15 +282,24 @@
     ];
 
     const ARCHETYPES = {
-      A: { icon: "🧭", zh: "策略領航員", en: "The Strategic Navigator", ticket: "🔵 藍色入場券", bg: "#EFF6FF", border: "#93C5FD", color: "#1D4ED8", cropClass: "crop-A" },
-      B: { icon: "🧡", zh: "暖心賦能者", en: "The Empathetic Mentor", ticket: "🟠 暖橘色入場券", bg: "#FFF7ED", border: "#FDBA74", color: "#C2410C", cropClass: "crop-B" },
-      C: { icon: "📖", zh: "魅力說書人", en: "The Charismatic Storyteller", ticket: "🟣 亮紫色入場券", bg: "#FAF5FF", border: "#D8B4FE", color: "#7E22CE", cropClass: "crop-C" },
-      D: { icon: "🚀", zh: "遠見影響家", en: "The Visionary Influencer", ticket: "🟢 翠綠色入場券", bg: "#ECFDF5", border: "#6EE7B7", color: "#047857", cropClass: "crop-D" }
+      A: { icon: "🧭", zh: "策略領航員", en: "The Strategic Navigator", ticket: "🔵 藍色入場券", bg: "#EFF6FF", border: "#93C5FD", color: "#1D4ED8", cropClass: "crop-A",
+        traits: ["✨ 邏輯清晰，冷靜決策不慌亂", "🗺️ 擅長在複雜局勢中規劃策略", "🤝 衝突管理與團隊領導力強", "⚠️ 有時過度追求完美與掌控", "💭 想太多、遲遲不踏出第一步"],
+        keywords: ["#Organized", "#ProblemSolver", "#Strategic"] },
+      B: { icon: "🧡", zh: "暖心賦能者", en: "The Empathetic Mentor", ticket: "🟠 暖橘色入場券", bg: "#FFF7ED", border: "#FDBA74", color: "#C2410C", cropClass: "crop-B",
+        traits: ["✨ 高度同理心，傾聽能力極佳", "💡 洞察他人動機，建立深度信任", "🌱 善於在團隊中創造連結與溫暖", "⚠️ 容易受他人期待影響，難以拒絕", "💭 花太多精力照顧別人，忘了為自己發聲"],
+        keywords: ["#TeamPlayer", "#GoodListener", "#Empathetic"] },
+      C: { icon: "📖", zh: "魅力說書人", en: "The Charismatic Storyteller", ticket: "🟣 亮紫色入場券", bg: "#FAF5FF", border: "#D8B4FE", color: "#7E22CE", cropClass: "crop-C",
+        traits: ["✨ 天生感染力與幽默感十足", "🎭 擅長用生動故事吸引全場目光", "🎵 肢體語言與節奏感自然流露", "⚠️ 點子豐富，但缺乏結構組織", "💭 逗笑全場，有時卻忘了核心訊息"],
+        keywords: ["#Storyteller", "#Engaging", "#CreativeVibes"] },
+      D: { icon: "🚀", zh: "遠見影響家", en: "The Visionary Influencer", ticket: "🟢 翠綠色入場券", bg: "#ECFDF5", border: "#6EE7B7", color: "#047857", cropClass: "crop-D",
+        traits: ["✨ 前瞻視野與高度說服力", "🔭 擅長協調各方觀點，推動新提案", "🤝 善於凝聚共識，帶動改變", "⚠️ 步伐太快、想得太遠", "💭 有時忽略隊友還沒跟上自己的節奏"],
+        keywords: ["#Visionary", "#Persuasive", "#GameChanger"] }
     };
 
     let userData = { name: "", email: "" };
     let currentQIndex = 0;
     let userAnswers = [[], [], [], [], [], []];
+    let currentResult = '';
 
     function goToView(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -353,6 +382,10 @@
       document.getElementById('res-name-en').textContent = primary.en;
       document.getElementById('res-ticket').textContent = `報到領取：${primary.ticket}`;
       document.getElementById('res-secondary').textContent = `${secondary.icon} ${secondary.zh}`;
+      const visibleTraits = primary.traits.slice(0, 3).map(t => `<div class="trait-row">${t}</div>`).join('');
+      const peekTrait = primary.traits[3] ? `<div class="traits-peek-wrap"><div class="trait-row">${primary.traits[3]}</div></div>` : '';
+      document.getElementById('res-traits').innerHTML = `<div class="traits-label">你的天賦光譜</div>${visibleTraits}${peekTrait}<div class="traits-lock-cta">🔒 完整分析・工作坊現場解鎖</div>`;
+      currentResult = primaryKey;
       goToView('view-result');
       sendToGoogleSheet({ timestamp: new Date().toISOString(), name: userData.name, email: userData.email, primaryKey: primaryKey, primaryType: primary.zh, secondaryKey: secondaryKey, secondaryType: secondary.zh, scoreA: scores.A, scoreB: scores.B, scoreC: scores.C, scoreD: scores.D });
     }
